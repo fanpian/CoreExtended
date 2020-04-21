@@ -1,0 +1,7 @@
+.vs/
+.vshistory/
+CoreExtended.Test/bin/
+CoreExtended.Test/obj/
+CoreExtended/bin/
+CoreExtended/obj/
+packages/
