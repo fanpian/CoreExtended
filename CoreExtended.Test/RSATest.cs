@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using CoreExtended.Encrypt.RSAEncrypt;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CoreExtended.Extend;
 
 namespace CoreExtended.Test
 {

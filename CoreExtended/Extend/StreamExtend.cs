@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,17 +20,30 @@ namespace CoreExtended.Extend
         /// <returns>如果Stream为null返回null.</returns>
         public static byte[] ToByteArray(this Stream stream)
         {
-            byte[] array;
             if (stream == null)
             {
-                array = null;
+                return null;
             }
-            else
-            {
-                array = new byte[(int)stream.Length];
-                stream.Read(array, 0, array.Length);
-            }
+            byte[] array = new byte[(int)stream.Length];
+            stream.Read(array, 0, array.Length);
             return array;
+        }
+
+        /// <summary>
+        /// 将流写入文件
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="array"></param>
+        /// <returns></returns>
+        public static bool ToFile(this Stream stream, string filePath)
+        {
+            if (stream == null)
+            {
+                return false;
+            }
+            byte[] array = ToByteArray(stream);
+            File.WriteAllBytes(filePath, array);
+            return true;
         }
     }
 }

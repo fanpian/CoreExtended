@@ -18,7 +18,7 @@ namespace CoreExtended.Extend
         /// <returns>存在就返回正确值，不存在返回未知</returns>
         public static string GetEnumText(this Enum @enum)
         {
-            return @enum.ToString("G");
+            return @enum?.ToString("G");
         }
 
         /// <summary>
@@ -51,12 +51,11 @@ namespace CoreExtended.Extend
         /// <returns>存在就返回正确值，不存在返回未知</returns>
         public static string GetEnumText(Type type, string value)
         {
-            int val = -1;
-            if (!int.TryParse(value, out val))
+            if (!int.TryParse(value, out int result))
             {
-                val = -1;
+                result = -1;
             }
-            return GetEnumText(type, value);
+            return GetEnumText(type, result);
         }
 
         /// <summary>
@@ -65,7 +64,7 @@ namespace CoreExtended.Extend
         /// <returns>存在就返回正确值，不存在返回未知</returns>
         public static string GetEnumText(Type type, int value)
         {
-            return type.GetEnumName(value) ?? "未知";
+            return type?.GetEnumName(value) ?? "未知";
         }
 
         /// <summary>
@@ -85,7 +84,10 @@ namespace CoreExtended.Extend
         /// <returns></returns>
         public static Dictionary<int, string> GetDictionary(Type type)
         {
-            if (!type.IsEnum) throw new Exception($"{type.FullName},不是枚举类型");
+            if (type == null || !type.IsEnum)
+            {
+                throw new Exception($"{type?.FullName},不是枚举类型");
+            }
             Array array = type.GetEnumValues();
             Dictionary<int, string> dic = new Dictionary<int, string>();
             foreach (int val in array)

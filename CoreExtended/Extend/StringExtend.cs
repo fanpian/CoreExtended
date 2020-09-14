@@ -14,39 +14,35 @@ namespace CoreExtended.Extend
         /// <param name="str"></param>
         /// <param name="defalut">默认字符串</param>
         /// <returns></returns>
-        public static string IfNullOrWhiteSpace(this string str, string defalut)
+        public static string IfNullOrWhiteSpace(this string str, string defaultVal)
         {
-            return string.IsNullOrWhiteSpace(str) ? defalut : str;
+            return string.IsNullOrWhiteSpace(str) ? defaultVal : str;
         }
 
         /// <summary>
         /// 字符串如果为NULL
         /// </summary>
         /// <param name="str"></param>
-        /// <param name="defalut">默认字符串</param>
+        /// <param name="defaultVal">默认字符串</param>
         /// <returns></returns>
-        public static string IfNull(this string str, string defalut)
+        public static string IfNull(this string str, string defaultVal)
         {
-            return str == null ? defalut : str;
+            return str == null ? defaultVal : str;
         }
 
         /// <summary>
         /// String转成Int类型
         /// </summary>
         /// <param name="str"></param>
+        /// <param name="defaultVal">默认值</param>
         /// <returns>失败返回-1</returns>
-        public static int ToInt32(this string str)
+        public static int ToInt32(this string str,int defaultVal)
         {
-            int val = 0;
-            try
+            if (!int.TryParse(str, out int result))
             {
-                val = Convert.ToInt32(str);
+                result = defaultVal;
             }
-            catch (Exception e)
-            {
-                val = -1;
-            }
-            return val;
+            return result;
         }
     }
 }
