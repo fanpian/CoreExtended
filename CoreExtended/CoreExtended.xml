@@ -1,0 +1,415 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CoreExtended</name>
+    </assembly>
+    <members>
+        <member name="T:CoreExtended.Encrypt.RSAEncrypt.RSA">
+            <summary>
+            RSA操作类
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA.ToXML(System.Boolean)">
+            <summary>
+            导出XML格式密钥对，如果convertToPublic含私钥的RSA将只返回公钥，仅含公钥的RSA不受影响
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA.ToPEM_PKCS1(System.Boolean)">
+            <summary>
+            导出PEM PKCS#1格式密钥对，如果convertToPublic含私钥的RSA将只返回公钥，仅含公钥的RSA不受影响
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA.ToPEM_PKCS8(System.Boolean)">
+            <summary>
+            导出PEM PKCS#8格式密钥对，如果convertToPublic含私钥的RSA将只返回公钥，仅含公钥的RSA不受影响
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA.Encode(System.String)">
+            <summary>
+            加密字符串（utf-8），出错抛异常
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA.Encode(System.Byte[])">
+            <summary>
+            加密数据，出错抛异常
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA.DecodeOrNull(System.String)">
+            <summary>
+            解密字符串（utf-8），解密异常返回null
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA.DecodeOrNull(System.Byte[])">
+            <summary>
+            解密数据，解密异常返回null
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA.Sign(System.String,System.String)">
+            <summary>
+            对str进行签名，并指定hash算法（如：SHA256）
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA.Sign(System.String,System.Byte[])">
+            <summary>
+            对data进行签名，并指定hash算法（如：SHA256）
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA.Verify(System.String,System.String,System.String)">
+            <summary>
+            验证字符串str的签名是否是sgin，并指定hash算法（如：SHA256）
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA.Verify(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            验证data的签名是否是sgin，并指定hash算法（如：SHA256）
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA.#ctor(System.Int32)">
+            <summary>
+            用指定密钥大小创建一个新的RSA，出错抛异常
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA.#ctor(System.String)">
+            <summary>
+            通过指定的密钥，创建一个RSA，xml内可以只包含一个公钥或私钥，或都包含，出错抛异常
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA.#ctor(System.String,System.Boolean)">
+            <summary>
+            通过一个pem文件创建RSA，pem为公钥或私钥，出错抛异常
+            </summary>
+            <param name="pem">Pem字符串</param>
+            <param name="noop">无意义</param>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSAExtend.#cctor">
+            <summary>
+            默认为2048位加密
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSAExtend.Init(System.String)">
+            <summary>
+            初始化
+            只有需要更改密钥时才需要在程序执行后执行初始化
+            </summary>
+            <param name="privateKey"></param>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSAExtend.ToXML(System.Boolean)">
+            <summary>
+            导出XML格式密钥对
+            如果convertToPublic含私钥的RSA将只返回公钥
+            仅含公钥的RSA不受影响
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSAExtend.ToPEM_PKCS1(System.Boolean)">
+            <summary>
+            导出PEM PKCS#1格式密钥对
+            如果convertToPublic含私钥的RSA将只返回公钥
+            仅含公钥的RSA不受影响
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSAExtend.ToPEM_PKCS8(System.Boolean)">
+            <summary>
+            导出PEM PKCS#8格式密钥对
+            如果convertToPublic含私钥的RSA将只返回公钥
+            仅含公钥的RSA不受影响
+            </summary>
+            <param name="convertToPublic">true->只导出公钥;false->只导出私钥</param>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSAExtend.Encode(System.String)">
+            <summary>
+            加密字符串
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSAExtend.Encode(System.Byte[])">
+            <summary>
+            加密字节数组
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSAExtend.Encode(System.String,System.String)">
+            <summary>
+            用公钥对字符串进行加密
+            </summary>
+            <param name="publicKey">公钥</param>
+            <param name="encodeStr">需要加密的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSAExtend.Encode(System.String,System.Byte[])">
+            <summary>
+            用特定公钥对字符串进行加密
+            </summary>
+            <param name="publikKey">公钥</param>
+            <param name="encodeBytes">需要加密的字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSAExtend.Decode(System.String)">
+            <summary>
+            解密字符串
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSAExtend.Decode(System.Byte[])">
+            <summary>
+            解密字节数组
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CoreExtended.Encrypt.RSAEncrypt.RSA_PEM">
+            <summary>
+            RSA PEM格式秘钥对的解析和导出
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA_PEM.FromPEM(System.String)">
+            <summary>
+            用PEM格式密钥对创建RSA，支持PKCS#1、PKCS#8格式的PEM
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA_PEM.ToPEM(System.Security.Cryptography.RSACryptoServiceProvider,System.Boolean,System.Boolean)">
+            <summary>
+            将RSA中的密钥对转换成PEM格式，usePKCS8=false时返回PKCS#1格式，否则返回PKCS#8格式，如果convertToPublic含私钥的RSA将只返回公钥，仅含公钥的RSA不受影响
+            </summary>
+        </member>
+        <member name="T:CoreExtended.Encrypt.RSAEncrypt.RSA_Unit">
+            <summary>
+            封装的一些通用方法
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.RSA_Unit.TextBreak(System.String,System.Int32)">
+            <summary>
+            把字符串按每行多少个字断行
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Encrypt.RSAEncrypt.Extensions.sub``1(``0[],System.Int32,System.Int32)">
+            <summary>
+            从数组start开始到指定长度复制一份
+            </summary>
+        </member>
+        <member name="T:CoreExtended.Extend.DateTimeExtend">
+            <summary>
+            DateTime自定义扩展
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.ToStringDefalut(System.DateTime)">
+            <summary>
+            DateTime默认输出字符串,如果失败则返回空
+            格式:yyyy-MM-dd HH:mm:ss
+            </summary>
+            <returns>yyyy-MM-dd HH:mm:ss,如果失败则返回空</returns>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.ToStringCustom_LongFull(System.DateTime,System.String)">
+            <summary>
+            DateTime输出字符串,如果失败则返回空
+            格式：yyyy{0}MM{0}dd HH:mm:ss
+            </summary>
+            <param name="dt">DateTime</param>
+            <param name="connector">日期连接字符串</param>
+            <returns>yyyy{0}MM{0}dd HH:mm:ss,如果失败则返回空</returns>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.ToStringCustom_LongDate(System.DateTime,System.String)">
+            <summary>
+            DateTime输出字符串,如果失败则返回空
+            格式：yyyy{0}MM{0}dd
+            </summary>
+            <param name="dt">DateTime</param>
+            <param name="connector">日期连接字符串</param>
+            <returns>yyyy{0}MM{0}dd,如果失败则返回空</returns>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.ToStringCustom_ShortDate(System.DateTime,System.String)">
+            <summary>
+            DateTime输出字符串,如果失败则返回空
+            格式：yy{0}MM{0}dd
+            </summary>
+            <param name="dt">DateTime</param>
+            <param name="connector">日期连接字符串</param>
+            <returns>yy{0}MM{0}dd,如果失败则返回空</returns>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.DateTimeToString(System.DateTime,System.String)">
+            <summary>
+            DateTime输出字符串,如果失败则返回空
+            </summary>
+            <param name="dt">DateTime</param>
+            <param name="connector">输出字符串的格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.IsToday(System.DateTime)">
+            <summary>
+            判断时间是不是今天
+            </summary>
+            <param name="dt">时间</param>
+            <returns>如果是今天返回true</returns>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.IsNull(System.DateTime)">
+            <summary>
+            判断时间是不是为Null
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.IsInitialTime(System.DateTime)">
+            <summary>
+            判断时间是不是初始时间
+            0000-1-1或者1900-1-1
+            </summary>
+            <param name="dt"></param>
+            <returns>true表示是初始时间.为null也表示是初始时间</returns>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.IfNull(System.DateTime)">
+            <summary>
+            如果时间为Null，则返回当前时间
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.IfNull(System.DateTime,System.DateTime)">
+            <summary>
+            如果时间为Null，则返回默认时间
+            </summary>
+            <param name="dt"></param>
+            <param name="defalut">默认时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.IfInitialTime(System.DateTime)">
+            <summary>
+            如果是初始时间返回当前时间
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.IfInitialTime(System.DateTime,System.DateTime)">
+            <summary>
+            如果是初始时间返回默认时间
+            </summary>
+            <param name="dt"></param>
+            <param name="defalut">默认时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.SetEndOfDay(System.DateTime)">
+            <summary>
+            将时间设置为这天的最后一秒钟
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.SetMonthFirstDay(System.DateTime)">
+            <summary>
+            当前日期的第一天
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Extend.DateTimeExtend.SetMonthLastDay(System.DateTime)">
+            <summary>
+            当前日期的最后一天
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CoreExtended.Extend.EnumExtend">
+            <summary>
+            枚举类型扩展
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Extend.EnumExtend.GetEnumText(System.Enum)">
+            <summary>
+            获取枚举类型文本值
+            </summary>
+            <typeparam name="TEnum">枚举类型</typeparam>
+            <param name="enum">枚举</param>
+            <param name="value">枚举值</param>
+            <returns>存在就返回正确值，不存在返回未知</returns>
+        </member>
+        <member name="M:CoreExtended.Extend.EnumExtend.GetEnumText``1(System.Int32)">
+            <summary>
+            获取枚举类型文本值
+            </summary>
+            <typeparam name="TEnum">枚举类型</typeparam>
+            <param name="value">枚举值</param>
+            <returns>存在就返回正确值，不存在返回未知</returns>
+        </member>
+        <member name="M:CoreExtended.Extend.EnumExtend.GetEnumText``1(System.String)">
+            <summary>
+            获取枚举类型文本值
+            </summary>
+            <typeparam name="TEnum">枚举类型</typeparam>
+            <param name="value">枚举值</param>
+            <returns>存在就返回正确值，不存在返回未知</returns>
+        </member>
+        <member name="M:CoreExtended.Extend.EnumExtend.GetEnumText(System.Type,System.String)">
+            <summary>
+            获取枚举的描述
+            </summary>
+            <param name="type">枚举类型</param>
+            <param name="value">枚举值或者枚举的常数</param>
+            <returns>存在就返回正确值，不存在返回未知</returns>
+        </member>
+        <member name="M:CoreExtended.Extend.EnumExtend.GetEnumText(System.Type,System.Int32)">
+            <summary>
+            获取枚举类型文本值
+            </summary>
+            <returns>存在就返回正确值，不存在返回未知</returns>
+        </member>
+        <member name="M:CoreExtended.Extend.EnumExtend.GetDictionary``1">
+            <summary>
+            获取枚举类型的字典数据
+            </summary>
+            <typeparam name="TEnum">枚举类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Extend.EnumExtend.GetDictionary(System.Type)">
+            <summary>
+            获取枚举类型的字典数据
+            </summary>
+            <param name="type">枚举类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:CoreExtended.Extend.StreamExtend">
+            <summary>
+            流扩展
+            </summary>
+        </member>
+        <member name="M:CoreExtended.Extend.StreamExtend.ToByteArray(System.IO.Stream)">
+            <summary>
+            将流转成字节数组
+            </summary>
+            <param name="stream"></param>
+            <returns>如果Stream为null返回null.</returns>
+        </member>
+        <member name="M:CoreExtended.Extend.StreamExtend.ToFile(System.IO.Stream,System.String)">
+            <summary>
+            将流写入文件
+            </summary>
+            <param name="stream"></param>
+            <param name="array"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Extend.StringExtend.IfNullOrWhiteSpace(System.String,System.String)">
+            <summary>
+            字符串如果为NULL、空、空白字符串
+            </summary>
+            <param name="str"></param>
+            <param name="defalut">默认字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Extend.StringExtend.IfNull(System.String,System.String)">
+            <summary>
+            字符串如果为NULL
+            </summary>
+            <param name="str"></param>
+            <param name="defaultVal">默认字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreExtended.Extend.StringExtend.ToInt32(System.String,System.Int32)">
+            <summary>
+            String转成Int类型
+            </summary>
+            <param name="str"></param>
+            <param name="defaultVal">默认值</param>
+            <returns>失败返回-1</returns>
+        </member>
+    </members>
+</doc>
