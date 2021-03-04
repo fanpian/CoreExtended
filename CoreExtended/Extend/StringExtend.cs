@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,13 +37,32 @@ namespace CoreExtended.Extend
         /// <param name="str"></param>
         /// <param name="defaultVal">默认值</param>
         /// <returns>失败返回-1</returns>
-        public static int ToInt32(this string str,int defaultVal)
+        public static int ToInt32(this string str, int defaultVal)
         {
             if (!int.TryParse(str, out int result))
             {
                 result = defaultVal;
             }
             return result;
+        }
+
+        /// <summary>
+        /// 读取文件
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static byte[] ReadFile(this string filePath)
+        {
+            if (string.IsNullOrWhiteSpace(filePath) || !File.Exists(filePath))
+            {
+                return null;
+            }
+            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            {
+                byte[] buffur = new byte[fs.Length];
+                fs.Read(buffur, 0, (int)fs.Length);
+                return buffur;
+            }
         }
     }
 }
