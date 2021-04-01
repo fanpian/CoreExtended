@@ -185,5 +185,14 @@ namespace CoreExtended.Encrypt.RSAEncrypt {
 
 			rsa = RSA_PEM.FromPEM(pem);
 		}
+
+		/// <summary>
+		/// 获取原始的
+		/// </summary>
+		/// <returns></returns>
+		public RSACryptoServiceProvider GetRSA()
+		{
+			return rsa;
+		}
 	}
 }

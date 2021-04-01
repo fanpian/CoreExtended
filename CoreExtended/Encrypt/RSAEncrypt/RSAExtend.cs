@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace CoreExtended.Encrypt.RSAEncrypt
@@ -145,6 +146,15 @@ KgUH2KIsDWjT+iZLBqJSpVF9KA+MSJfBmrTMiZ5EHEAoR7mohktmTA==
         public static byte[] Decode(byte[] data)
         {
             return _rsa.DecodeOrNull(data);
+        }
+
+        /// <summary>
+        /// 获取原始的
+        /// </summary>
+        /// <returns></returns>
+        public static RSACryptoServiceProvider GetRSA()
+        {
+            return _rsa.GetRSA();
         }
     }
 }
