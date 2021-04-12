@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -32,6 +33,24 @@ namespace CoreExtended.Encrypt
             using (SHA256 sha256 = SHA256.Create())
             {
                 byte[] buffer = sha256.ComputeHash(bytes);
+#if NET5_0_OR_GREATER
+                return BitConverter.ToString(buffer).Replace("-", "", StringComparison.Ordinal);//将字节数组转成16进制字符串
+#else
+                return BitConverter.ToString(buffer);
+#endif
+            }
+        }
+
+        /// <summary>
+        /// 计算流的Sha256
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns></returns>
+        public static string Generate(Stream stream)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] buffer = sha256.ComputeHash(stream);
 #if NET5_0_OR_GREATER
                 return BitConverter.ToString(buffer).Replace("-", "", StringComparison.Ordinal);//将字节数组转成16进制字符串
 #else

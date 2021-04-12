@@ -69,11 +69,34 @@ namespace CoreExtended.Extend
         /// <summary>
         /// 生成sha256加密字符串
         /// </summary>
-        /// <param name="stc"></param>
+        /// <param name="str">字符串</param>
+        /// <param name="isFile">是否是文件路径;true表示将获取文件SHA256</param>
         /// <returns></returns>
-        public static string ToSha256String(this string str)
+        public static string ToSha256String(this string str, bool isFile = false)
         {
+            if (string.IsNullOrWhiteSpace(str))
+            {
+                return null;
+            }
+            if (isFile) {
+                return FileToSha256String(str);
+            }
             return SHA256Encrypt.Generate(str);
+        }
+
+        /// <summary>
+        /// 计算文件的SHA256值
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="isFile"></param>
+        /// <returns></returns>
+        private static string FileToSha256String(string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                return null;
+            }
+            return SHA256Encrypt.Generate(File.ReadAllBytes(filePath));
         }
     }
 }
