@@ -181,5 +181,16 @@ namespace CoreExtended.Extend
             dt = SetMonthFirstDay(dt);
             return dt.AddMonths(1).AddDays(-1);
         }
+
+        /// <summary>
+        /// 时间距离1970-1-1 0:0:0多少计时周期(Ticks)
+        /// 以100豪微秒为一周期
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static long UtcTimeDiff(this DateTime dt)
+        {            
+            return new DateTimeOffset(dt).UtcTicks - new DateTime(1970, 1, 1, 0, 0, 0,DateTimeKind.Utc).Ticks;
+        }
     }
 }

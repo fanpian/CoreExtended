@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CoreExtended.SystemInfo\CoreExtended.SystemInfo.csproj" />
+    <ProjectReference Include="..\CoreExtended\CoreExtended.csproj" />
   </ItemGroup>
 
 </Project>
