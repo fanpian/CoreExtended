@@ -10,7 +10,7 @@ namespace CoreExtended.Encrypt.RSAEncrypt
         private static RSA _rsa;
         private static string _privateKey;
         // 2048位加密
-        private static readonly string _defaultPrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
+        private const string _defaultPrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEAtzhSIa4Hx2ueThIyesyrXZhgOeB1Pq5OopiKcDWIfRdQtGaA
 9JEq102ojgx32S4tb0qR110YjCOjmSEhpZy+17nzqcg5PwxNboVjTRgxrfqKWfAe
 Ny8bWNeC3pK35ZDYiibg77i+aM0mpSXlHnpAm68NFpqolpYvRO/v7zC44lxD39RU

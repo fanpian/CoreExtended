@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoreExtended.Encrypt;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -63,6 +64,16 @@ namespace CoreExtended.Extend
                 fs.Read(buffur, 0, (int)fs.Length);
                 return buffur;
             }
+        }
+
+        /// <summary>
+        /// 生成sha256加密字符串
+        /// </summary>
+        /// <param name="stc"></param>
+        /// <returns></returns>
+        public static string ToSha256String(this string str)
+        {
+            return SHA256Encrypt.Generate(str);
         }
     }
 }

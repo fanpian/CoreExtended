@@ -5,3 +5,7 @@ CoreExtended.Test/obj/
 CoreExtended/bin/
 CoreExtended/obj/
 packages/
+CoreExtended.SystemInfo/bin/
+CoreExtended.SystemInfo/obj/
+CoreExtended.UnitTest/bin/
+CoreExtended.UnitTest/obj/
