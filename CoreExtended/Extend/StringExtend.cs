@@ -48,44 +48,24 @@ namespace CoreExtended.Extend
         }
 
         /// <summary>
-        /// 读取文件
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <returns></returns>
-        public static byte[] ReadFile(this string filePath)
-        {
-            if (string.IsNullOrWhiteSpace(filePath) || !File.Exists(filePath))
-            {
-                return null;
-            }
-            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-            {
-                byte[] buffur = new byte[fs.Length];
-                fs.Read(buffur, 0, (int)fs.Length);
-                return buffur;
-            }
-        }
-
-        /// <summary>
         /// 生成sha256加密字符串
+        /// 没有"-"连接符
         /// </summary>
         /// <param name="str">字符串</param>
         /// <param name="isFile">是否是文件路径;true表示将获取文件SHA256</param>
         /// <returns></returns>
-        public static string ToSha256String(this string str, bool isFile = false)
+        public static string ToSha256String(this string str)
         {
             if (string.IsNullOrWhiteSpace(str))
             {
                 return null;
             }
-            if (isFile) {
-                return FileToSha256String(str);
-            }
-            return SHA256Encrypt.Generate(str);
+            return SHA256Helper.Generate(str, false);
         }
 
         /// <summary>
         /// 计算文件的SHA256值
+        /// 没有"-"连接符
         /// </summary>
         /// <param name="filePath"></param>
         /// <param name="isFile"></param>
@@ -96,7 +76,71 @@ namespace CoreExtended.Extend
             {
                 return null;
             }
-            return SHA256Encrypt.Generate(File.ReadAllBytes(filePath));
+            return SHA256Helper.Generate(File.ReadAllBytes(filePath));
+        }
+
+        /// <summary>
+        /// 替换"-"为空
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string ReplaceHyphens(this string str)
+        {
+#if NET5_0_OR_GREATER
+            return str?.Replace("-", "", StringComparison.Ordinal);
+#else
+            return str?.Replace("-", "");
+#endif
+        }
+
+        /// <summary>
+        /// RSA加密
+        /// 密钥格式为xml格式
+        /// </summary>
+        /// <param name="str">需要加密的字符串</param>
+        /// <param name="publicKey">xml格式公钥.如果公钥为空,则使用默认私钥加密</param>
+        /// <returns></returns>
+        public static string ToRSAEncryptForXml(this string str, string publicKey = "")
+        {
+            return RSAHelperForXml.Encrypt(str, publicKey);
+        }
+
+        /// <summary>
+        /// RSA解密
+        /// 密钥格式为xml格式
+        /// </summary>
+        /// <param name="str">需要加密的字符串</param>
+        /// <param name="privateKey">xml格式私钥.如果私钥为空,则使用默认私钥加密</param>
+        /// <returns></returns>
+        public static string ToRSADecryptForXml(this string str, string privateKey = "")
+        {
+            return RSAHelperForXml.Decrypt(str, privateKey);
+        }
+
+
+
+        /// <summary>
+        /// RSA加密
+        /// 密钥格式为PEM格式
+        /// </summary>
+        /// <param name="str">需要加密的字符串</param>
+        /// <param name="publicKey">xml格式公钥.如果公钥为空,则使用默认私钥加密</param>
+        /// <returns></returns>
+        public static string ToRSAEncryptForPEM(this string str, string publicKey = "")
+        {
+            return RSAHelperForPEM.Encrypt(str, publicKey);
+        }
+
+        /// <summary>
+        /// RSA解密
+        /// 密钥格式为PEM格式
+        /// </summary>
+        /// <param name="str">需要加密的字符串</param>
+        /// <param name="privateKey">xml格式私钥.如果私钥为空,则使用默认私钥加密</param>
+        /// <returns></returns>
+        public static string ToRSADecryptForPEM(this string str, string privateKey = "")
+        {
+            return RSAHelperForPEM.Decrypt(str, privateKey);
         }
     }
 }

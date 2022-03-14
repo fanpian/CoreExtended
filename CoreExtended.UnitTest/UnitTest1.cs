@@ -1,3 +1,4 @@
+using CoreExtended.Encrypt;
 using CoreExtended.SystemInfo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -71,6 +72,12 @@ namespace CoreExtended.UnitTest
                 }
             }
             // IEnumerable<NetworkInfo> infos = NetworkInterfaceExtend.GetNetworkInfos(null);
+        }
+
+        [TestMethod]
+        public void TestSha()
+        {
+            string temp =SHA256Helper.Generate("123465");
         }
     }
 }

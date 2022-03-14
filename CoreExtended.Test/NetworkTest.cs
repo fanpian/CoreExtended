@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace CoreExtended.Test
 {
@@ -35,7 +37,11 @@ namespace CoreExtended.Test
         [TestMethod]
         public void GetNetwork()
         {
-            IEnumerable<NetworkInfo> infos = NetworkInterfaceExtend.GetNetworkInfos(null);
+            // IEnumerable<NetworkInfo> infos = NetworkInterfaceExtend.GetNetworkInfos(null);
+            string temp = "2a1976abb6d38945027a3ca804abd876";
+            MD5 md5 = MD5.Create();
+            byte[] test = md5.ComputeHash(Encoding.UTF8.GetBytes(temp));
+            string en = BitConverter.ToString(test, 0, test.Length);
         }
     }
 }
